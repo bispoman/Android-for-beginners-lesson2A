@@ -6,12 +6,11 @@ package com.danielbispo.justjava; /**
  */
 
 import android.os.Bundle;
-import android.support.v7.app1312.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.danielbispo.justjava.R;
 
 import java.text.NumberFormat;
 
