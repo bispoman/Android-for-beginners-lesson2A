@@ -15,42 +15,43 @@
         android:id="@+id/titleQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/titleQnt"
-        android:textSize="16sp"
-        android:textAllCaps="true"
+        android:paddingBottom="8dp"
         android:paddingTop="16dp"
-        android:paddingBottom="8dp"/>
+        android:text="@string/titleQnt"
+        android:textAllCaps="true"
+        android:textSize="16sp" />
 
     <LinearLayout
         android:id="@+id/layoutUm"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/titleQuantity"
         android:orientation="horizontal"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp">
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
 
         <Button
             android:id="@+id/minusBtn"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:text="@string/minus"
-            android:layout_marginRight="8dp" />
+            android:layout_marginRight="8dp"
+            android:text="@string/minus" />
 
         <TextView
             android:id="@+id/itemCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="8dp"
             android:text="0"
             android:textColor="#000"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/plusBtn"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:text="@string/plus"
-            android:layout_marginLeft="8dp" />
+            android:layout_marginLeft="8dp"
+            android:text="@string/plus" />
 
     </LinearLayout>
 
@@ -58,27 +59,27 @@
         android:id="@+id/title_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/price"
         android:textAllCaps="true"
-        android:textSize="16sp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"/>
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/price_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/price_text_view"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/price_text_view"
         android:textColor="#000"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/orderBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/layoutUm"
-        android:text="@string/orderBtn"
-        android:paddingTop="8dp" />
+        android:paddingTop="8dp"
+        android:text="@string/orderBtn" />
 </LinearLayout>
