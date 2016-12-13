@@ -31,7 +31,7 @@
         android:paddingBottom="8dp">
 
         <Button
-            android:id="@+id/plusBtn"
+            android:id="@+id/minusBtn"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:text="@string/minus"
@@ -46,7 +46,7 @@
             android:textSize="16sp"/>
 
         <Button
-            android:id="@+id/minusBtn"
+            android:id="@+id/plusBtn"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:text="@string/plus"

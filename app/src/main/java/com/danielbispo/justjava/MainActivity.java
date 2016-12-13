@@ -1,4 +1,5 @@
-package com.danielbispo.justjava; /**
+package com.danielbispo.justjava;
+/**
  * Add your package below. Package name can be found in the project's AndroidManifest.xml file.
  * This is the package name our example uses:
  *
@@ -15,11 +16,11 @@ import android.widget.TextView;
 import java.text.NumberFormat;
 
 /**
- * This app1312 displays an order form to order coffee.
+ * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
 
-    static int numberOfCoffees;
+    int numberOfCoffees;
     Button btn1;
     Button btnPlus;
     Button btnMinus;
@@ -78,13 +79,11 @@ public class MainActivity extends AppCompatActivity {
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
     private void plusCount(View view) {
-        TextView count = (TextView) findViewById(R.id.itemCount);
         numberOfCoffees = ++numberOfCoffees;
-        count.setText(""+numberOfCoffees);
+        display(numberOfCoffees);
     }
     private void lessCount(View view) {
-        TextView priceTextView = (TextView) findViewById(R.id.itemCount);
         numberOfCoffees = --numberOfCoffees;
-        priceTextView.setText(""+numberOfCoffees);
+        display(numberOfCoffees);
     }
 }
