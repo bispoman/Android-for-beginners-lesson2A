@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn1;
     Button btnPlus;
     Button btnMinus;
+    EditText cName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         btn1 = (Button) findViewById(R.id.orderBtn);
         btnPlus = (Button) findViewById(R.id.plusBtn);
         btnMinus = (Button) findViewById(R.id.minusBtn);
+        cName = (EditText) findViewById(R.id.customerName);
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,14 +63,20 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view, int numberOfCoffees) {
-        display(numberOfCoffees);
-        displayPrice(numberOfCoffees * 2);
+        displayQuantity(numberOfCoffees);
+        createOrderSummary();
+    }
+
+    public void createOrderSummary() {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        String customerName = cName.getText().toString();
+        priceTextView.setText("Name: "+customerName+"\nQuantity: "+numberOfCoffees+"\nTotal: "+NumberFormat.getCurrencyInstance().format(calculatePrice())+"\nThank you!");
     }
 
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void display(int number) {
+    private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.itemCount);
         quantityTextView.setText("" + number);
     }
@@ -78,12 +87,15 @@ public class MainActivity extends AppCompatActivity {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText("Foda-se " + NumberFormat.getCurrencyInstance().format(number));
     }
+
+    private int calculatePrice() { return numberOfCoffees *5; }
+
     private void plusCount(View view) {
         numberOfCoffees = ++numberOfCoffees;
-        display(numberOfCoffees);
+        displayQuantity(numberOfCoffees);
     }
     private void lessCount(View view) {
         numberOfCoffees = --numberOfCoffees;
-        display(numberOfCoffees);
+        displayQuantity(numberOfCoffees);
     }
 }
