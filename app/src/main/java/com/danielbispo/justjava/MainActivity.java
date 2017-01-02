@@ -9,6 +9,7 @@ package com.danielbispo.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         btn1 = (Button) findViewById(R.id.orderBtn);
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createOrderSummary() {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
         String customerName = cName.getText().toString();
         priceTextView.setText("Name: "+customerName+"\nQuantity: "+numberOfCoffees+"\nTotal: "+NumberFormat.getCurrencyInstance().format(calculatePrice())+"\nThank you!");
     }
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given price on the screen.
      */
     private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
         priceTextView.setText("Foda-se " + NumberFormat.getCurrencyInstance().format(number));
     }
 
