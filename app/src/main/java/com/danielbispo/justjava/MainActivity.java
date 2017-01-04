@@ -9,24 +9,26 @@ package com.danielbispo.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
 
 import java.text.NumberFormat;
 
+
 /**
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
 
-    int numberOfCoffees;
-    Button btn1;
-    Button btnPlus;
-    Button btnMinus;
-    EditText cName;
+    private int numberOfCoffees;
+    private Button btn1, btnPlus, btnMinus;
+    private EditText cName;
+    private CheckBox mBox;
+    private String mCream = "No";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         btnPlus = (Button) findViewById(R.id.plusBtn);
         btnMinus = (Button) findViewById(R.id.minusBtn);
         cName = (EditText) findViewById(R.id.customerName);
+        mBox = (CheckBox) findViewById(R.id.checkBox);
+
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
                 plusCount(getCurrentFocus());
             }
         });
+
+        mBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (mBox.isChecked()) { mCream = "Yes";} else { mCream = "No";};
+            }
+        });
     }
 
     /**
@@ -72,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     public void createOrderSummary() {
         TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
         String customerName = cName.getText().toString();
-        priceTextView.setText("Name: "+customerName+"\nQuantity: "+numberOfCoffees+"\nTotal: "+NumberFormat.getCurrencyInstance().format(calculatePrice())+"\nThank you!");
+        priceTextView.setText("Name: "+customerName+"\nAdd WhipCream? "+mCream+"\nQuantity: "+numberOfCoffees+"\nTotal: "+NumberFormat.getCurrencyInstance().format(calculatePrice())+"\nThank you!");
     }
 
     /**
@@ -90,7 +101,17 @@ public class MainActivity extends AppCompatActivity {
         priceTextView.setText("Foda-se " + NumberFormat.getCurrencyInstance().format(number));
     }
 
-    private int calculatePrice() { return numberOfCoffees *5; }
+    private int calculatePrice() {
+        int toppings = calcTopping();
+                int finalprice = (numberOfCoffees *5)+toppings;
+        return finalprice;
+    }
+
+    private int calcTopping() {
+        int price=0;
+        if (mBox.isChecked()) {price=+2;}
+        return price;
+    }
 
     private void plusCount(View view) {
         numberOfCoffees = ++numberOfCoffees;
@@ -100,4 +121,6 @@ public class MainActivity extends AppCompatActivity {
         numberOfCoffees = --numberOfCoffees;
         displayQuantity(numberOfCoffees);
     }
+
+
 }
