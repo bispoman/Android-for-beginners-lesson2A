@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private int numberOfCoffees;
     private Button btn1, btnPlus, btnMinus;
     private EditText cName;
-    private CheckBox mBox, mChocBox;
+    private CheckBox mCreamBox, mChocBox;
     private String mCream = "No", mChoc = "No";
 
     @Override
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         btnPlus = (Button) findViewById(R.id.plusBtn);
         btnMinus = (Button) findViewById(R.id.minusBtn);
         cName = (EditText) findViewById(R.id.customerName);
-        mBox = (CheckBox) findViewById(R.id.checkBox);
+        mCreamBox = (CheckBox) findViewById(R.id.checkBox);
         mChocBox = (CheckBox) findViewById(R.id.checkBoxChoc);
 
 
@@ -64,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mCreamBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (mBox.isChecked()) {
+                if (mCreamBox.isChecked()) {
                     mCream = "Yes";
                 } else {
                     mCream = "No";
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         mChocBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (mBox.isChecked()) {
+                if (mChocBox.isChecked()) {
                     mChoc = "Yes";
                 } else {
                     mChoc = "No";
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private int calculatePrice() {
         int toppings = calcTopping();
-        int finalprice = (numberOfCoffees * 5) + toppings;
+        int finalprice = numberOfCoffees * (5 + toppings);
         return finalprice;
     }
 
@@ -136,11 +136,11 @@ public class MainActivity extends AppCompatActivity {
      */
     private int calcTopping() {
         int price = 0;
-        if (mBox.isChecked()) {
-            price += 2;
+        if (mCreamBox.isChecked()) {
+            price += 1;
         }
         if (mChocBox.isChecked()) {
-            price += 3;
+            price += 2;
         }
         return price;
     }
