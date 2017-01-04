@@ -2,8 +2,8 @@ package com.danielbispo.justjava;
 /**
  * Add your package below. Package name can be found in the project's AndroidManifest.xml file.
  * This is the package name our example uses:
- *
- * package com.example.android.justjava; 
+ * <p>
+ * package com.example.android.justjava;
  */
 
 import android.os.Bundle;
@@ -14,7 +14,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
-
 
 import java.text.NumberFormat;
 
@@ -27,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private int numberOfCoffees;
     private Button btn1, btnPlus, btnMinus;
     private EditText cName;
-    private CheckBox mBox;
-    private String mCream = "No";
+    private CheckBox mBox, mChocBox;
+    private String mCream = "No", mChoc = "No";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +40,13 @@ public class MainActivity extends AppCompatActivity {
         btnMinus = (Button) findViewById(R.id.minusBtn);
         cName = (EditText) findViewById(R.id.customerName);
         mBox = (CheckBox) findViewById(R.id.checkBox);
+        mChocBox = (CheckBox) findViewById(R.id.checkBoxChoc);
 
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                submitOrder(getCurrentFocus(), numberOfCoffees);
+                submitOrder();
             }
         });
 
@@ -67,7 +67,24 @@ public class MainActivity extends AppCompatActivity {
         mBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (mBox.isChecked()) { mCream = "Yes";} else { mCream = "No";};
+                if (mBox.isChecked()) {
+                    mCream = "Yes";
+                } else {
+                    mCream = "No";
+                }
+                ;
+            }
+        });
+
+        mChocBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (mBox.isChecked()) {
+                    mChoc = "Yes";
+                } else {
+                    mChoc = "No";
+                }
+                ;
             }
         });
     }
@@ -75,15 +92,24 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method is called when the order button is clicked.
      */
-    public void submitOrder(View view, int numberOfCoffees) {
-        displayQuantity(numberOfCoffees);
-        createOrderSummary();
+    public void submitOrder() {
+        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        priceTextView.setText(createOrderSummary());
     }
 
-    public void createOrderSummary() {
-        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
+    /**
+     * This method creates the Order summary and returns it as a string.
+     * @return Order description string.
+     */
+    public String createOrderSummary() {
         String customerName = cName.getText().toString();
-        priceTextView.setText("Name: "+customerName+"\nAdd WhipCream? "+mCream+"\nQuantity: "+numberOfCoffees+"\nTotal: "+NumberFormat.getCurrencyInstance().format(calculatePrice())+"\nThank you!");
+        String orderSummary = "Name: " + customerName;
+        orderSummary += "\nAdd WhipCream? " + mCream;
+        orderSummary += "\nAdd Chocolate? " + mChoc;
+        orderSummary += "\nQuantity: " + numberOfCoffees;
+        orderSummary += "\nTotal: " + NumberFormat.getCurrencyInstance().format(calculatePrice());
+        orderSummary += "\nThank you!";
+        return orderSummary;
     }
 
     /**
@@ -93,30 +119,43 @@ public class MainActivity extends AppCompatActivity {
         TextView quantityTextView = (TextView) findViewById(R.id.itemCount);
         quantityTextView.setText("" + number);
     }
-    /**
-     * This method displays the given price on the screen.
-     */
-    private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        priceTextView.setText("Foda-se " + NumberFormat.getCurrencyInstance().format(number));
-    }
 
+    /**
+     * This method calculates the final price
+     * @return int with the price.
+     */
     private int calculatePrice() {
         int toppings = calcTopping();
-                int finalprice = (numberOfCoffees *5)+toppings;
+        int finalprice = (numberOfCoffees * 5) + toppings;
         return finalprice;
     }
 
+    /**
+     * This method calculates the price for all the toppings
+     * @return int with the price of all toppings.
+     */
     private int calcTopping() {
-        int price=0;
-        if (mBox.isChecked()) {price=+2;}
+        int price = 0;
+        if (mBox.isChecked()) {
+            price += 2;
+        }
+        if (mChocBox.isChecked()) {
+            price += 3;
+        }
         return price;
     }
 
+    /**
+     * adds one to the quantity counter
+     */
     private void plusCount(View view) {
         numberOfCoffees = ++numberOfCoffees;
         displayQuantity(numberOfCoffees);
     }
+
+    /**
+     * minus one on the quantity counter
+     */
     private void lessCount(View view) {
         numberOfCoffees = --numberOfCoffees;
         displayQuantity(numberOfCoffees);

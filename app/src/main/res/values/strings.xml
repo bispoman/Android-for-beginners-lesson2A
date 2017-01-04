@@ -4,6 +4,7 @@
     <string name="titleQnt">Quantity</string>
     <string name="titleTpns">Toppings</string>
     <string name="tpn1">Whipped Cream</string>
+    <string name="tpn2">Chocolate</string>
     <string name="order_summary">Order Summary</string>
     <string name="price_text_view">R$ 0,00</string>
     <string name="plus">+</string>
