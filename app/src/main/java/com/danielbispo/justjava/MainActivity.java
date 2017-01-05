@@ -6,6 +6,8 @@ package com.danielbispo.justjava;
  * package com.example.android.justjava;
  */
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -93,8 +95,19 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder() {
-        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        priceTextView.setText(createOrderSummary());
+//        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
+//        priceTextView.setText(createOrderSummary());
+
+        String orderSummary = createOrderSummary();
+
+        Intent radahradah = new Intent(Intent.ACTION_SENDTO);
+        radahradah.setData(Uri.parse("mailto:"));
+        radahradah.putExtra(Intent.EXTRA_TEXT, orderSummary);
+        radahradah.putExtra(Intent.EXTRA_SUBJECT, "Olá Marilene!");
+        radahradah.putExtra(Intent.EXTRA_EMAIL, "daniel.bispo@bemobi.com.br");
+        if (radahradah.resolveActivity(getPackageManager()) != null){
+            startActivity(radahradah);
+        }
     }
 
     /**
@@ -104,11 +117,11 @@ public class MainActivity extends AppCompatActivity {
     public String createOrderSummary() {
         String customerName = cName.getText().toString();
         String orderSummary = "Name: " + customerName;
-        orderSummary += "\nAdd WhipCream? " + mCream;
-        orderSummary += "\nAdd Chocolate? " + mChoc;
-        orderSummary += "\nQuantity: " + numberOfCoffees;
-        orderSummary += "\nTotal: " + NumberFormat.getCurrencyInstance().format(calculatePrice());
-        orderSummary += "\nThank you!";
+        orderSummary += "\n" + getString(R.string.whipped_cream) + " " + mCream;
+        orderSummary += "\n" + getString(R.string.chocolate) + " " + mChoc;
+        orderSummary += "\n" + getString(R.string.quantity) + numberOfCoffees;
+        orderSummary += "\n" + getString(R.string.total) + NumberFormat.getCurrencyInstance().format(calculatePrice());
+        orderSummary += "\n" + getString(R.string.thank_you);
         return orderSummary;
     }
 

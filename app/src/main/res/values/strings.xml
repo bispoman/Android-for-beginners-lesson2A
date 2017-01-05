@@ -10,4 +10,10 @@
     <string name="plus">+</string>
     <string name="minus">-</string>
     <string name="customerName">Your name</string>
+
+    <string name="thank_you">Thank you!</string>
+    <string name="total">Total: </string>
+    <string name="quantity">Quantity: </string>
+    <string name="chocolate">Add Chocolate?</string>
+    <string name="whipped_cream">Add Whipped Cream?</string>
 </resources>

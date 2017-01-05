@@ -24,13 +24,10 @@
 
         <TextView
             android:id="@+id/titleToppings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:paddingBottom="8dp"
             android:paddingTop="16dp"
             android:text="@string/titleTpns"
-            android:textAllCaps="true"
-            android:textSize="16sp" />
+            style="@style/header_text_style"/>
 
         <CheckBox
             android:id="@+id/checkBox"
@@ -50,13 +47,10 @@
 
         <TextView
             android:id="@+id/titleQuantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:paddingBottom="8dp"
             android:paddingTop="16dp"
             android:text="@string/titleQnt"
-            android:textAllCaps="true"
-            android:textSize="16sp" />
+            style="@style/header_text_style"/>
 
         <LinearLayout
             android:id="@+id/layoutUm"
@@ -94,13 +88,10 @@
 
         <TextView
             android:id="@+id/title_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/order_summary"
-            android:textAllCaps="true"
-            android:textSize="16sp" />
+            style="@style/header_text_style"/>
 
         <TextView
             android:id="@+id/order_summary_text_view"

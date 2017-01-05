@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app1312_name">Just Java</string>
+    <string name="chocolate">Adicionar Chocolate?</string>
+    <string name="customerName">Seu nome</string>
+    <string name="orderBtn">Fazer pedido</string>
+    <string name="order_summary">Resumo do pedido</string>
+    <string name="quantity">Quantidade:</string>
+    <string name="thank_you">Obrigado!</string>
+    <string name="titleQnt">Quantidade</string>
+    <string name="titleTpns">Coberturas</string>
+    <string name="total"></string>
+    <string name="tpn1">Chantilly</string>
+    <string name="whipped_cream">Adicionar Chantilly?</string>
+</resources>
